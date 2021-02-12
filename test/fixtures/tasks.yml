@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: complete
+  description: prueba 1
+  user: jhon
+
+two:
+  status: incomplete
+  description: MyString
+  user: jane
+
+three:
+  status:
+  description: descripcion 123
+  user: david
+
+four:
+  status: complete
+  description:
+  user: jhon
+
+five:
+  status: incomplete
+  description: prueba 2
+  user: jhon
+
+six:
+  status: incompletes
+  description: prueba 432
+  user: juan
