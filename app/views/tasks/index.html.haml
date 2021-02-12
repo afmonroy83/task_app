@@ -1,0 +1,29 @@
+
+%h2 Listing tasks
+.product-block
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th.col-md-2 Creador
+        %th.col-md-2 Status
+        %th.col-md-2 Description
+        %th.col-md-4 Options
+    %tbody
+      - @tasks.each do |task|
+        %tr
+          %td.col-md-2= task.user.try(:email)
+          %td.col-md-2= task.status
+          %td.col-md-2
+            =task.description
+          %td.col-md-4
+            = link_to 'Show', task, class: "btn btn-info"
+            = link_to 'Edit', edit_task_path(task), class: "btn  btn-warning"
+            = link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+
+.row
+  .col-md-12
+    .center-text
+      .digg_pagination
+        = will_paginate @tasks, :container => false, list_classes: %w(pagination justify-content-end)
+    %br
+      = link_to 'New Task', new_task_path, class: "btn btn-primary"

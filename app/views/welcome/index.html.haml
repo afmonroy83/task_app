@@ -1,0 +1,9 @@
+- if user_signed_in?
+  %h1="Bienvenido #{current_user.full_name}"
+  %p
+    ="CANTIDAD DE TAREAS COMPLETADAS: #{current_user.task_complete}"
+    %br
+    ="CANTIDAD DE TAREAS INCOMPLETAS: #{current_user.task_incomplete}"
+- else
+  %h1 Bienvenido
+  %p Inicia sesión para crear, editar y administrar tus tareas

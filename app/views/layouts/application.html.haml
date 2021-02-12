@@ -1,0 +1,101 @@
+!!!
+%html
+  %head
+    %title Tareas App
+    = stylesheet_link_tag	'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .row
+      %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container-fluid
+          %a.navbar-brand{:href => "#{home_path}"} Navbar scroll
+          %button.navbar-toggler{"aria-controls" => "navbarScroll", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarScroll", "data-bs-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarScroll.collapse.navbar-collapse
+            %ul.navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll{:style => "--bs-scroll-height: 100px;"}
+              %li.nav-item.dropdown
+                %a#navbarScrollingDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                  Tareas
+                %ul.dropdown-menu{"aria-labelledby" => "navbarScrollingDropdown"}
+                  %li
+                    %a.dropdown-item{:href => "#{new_task_path}"} Nueva
+
+                  %li
+                    %a.dropdown-item{:href => "#{tasks_path}"} Todas
+
+            %form.d-flex
+              %input.form-control.form-control-sm{"autocomplete"=>"off",:name  => "search","aria-label" => "Search", :placeholder => "Buscar", :type => "search",:id => "search2", "data-toggle" => "dropdown"}/
+              %button.btn.btn-outline-info{:type => "submit"} Buscar
+          #navbarScroll.collapse.navbar-collapse.flex-grow-1.text-right
+            %ul.navbar-nav.ms-auto.flex-nowrap{:style => "--bs-scroll-height: 100px;"}
+              %li.nav-item.dropdown
+                %a#navbarScrollingDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                  - if user_signed_in?
+                    =current_user.username
+                  - else
+                    Usuario
+
+                %ul.dropdown-menu{"aria-labelledby" => "navbarScrollingDropdown"}
+                  -if user_signed_in?
+                    %li
+                      = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
+                  -else
+                    %li
+                      = link_to "Sign up", new_user_registration_path, class: "dropdown-item"
+                    %li
+                      = link_to "Login", new_user_session_path, class: "dropdown-item"
+                  -if user_signed_in?
+                    %li.dropdown-divider{:role => "separator"}
+                    %li= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"
+    #main-container.container
+      = flash_messages
+      #down
+      .row
+        = yield
+-if user_signed_in?
+  :javascript
+
+    //setup before functions
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 2000;  //time in ms, 5 second for example
+    var $input = $('#search2');
+
+    //on keyup, start the countdown
+    $input.on('keyup', function () {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    });
+
+    //on keydown, clear the countdown
+    $input.on('keydown', function () {
+      clearTimeout(typingTimer);
+    });
+
+      //user is "finished typing," do something
+    function doneTyping () {
+      var user = #{current_user.id}
+      $.ajax({
+          url: '#{search_tasks_path}',
+          type: 'POST',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: {description:$input.val(), user_id:user},
+          success: function(data) {
+            console.log(data);
+
+            $('#main-container h3').remove();
+            $('#main-container down').remove();
+            $('#main-container .row').remove();
+            $("#main-container").prepend("<h3>Resulados para: "+ $input.val() +"</h3>");
+            var tasks = data
+              $.each(tasks, function (i, valor) {
+
+                  $("#main-container #down").prepend("<a class='btn btn-info' href='/tasks/"+ valor.id +"'>"+valor.description+"</a>");
+
+              });
+            },
+          error: function(data) {console.log('error: '+data);}
+      });
+
+    }
