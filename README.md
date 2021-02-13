@@ -66,16 +66,17 @@ Se debe tener en cuenta que esta hecho para trabajar con una base de datos mysql
 
 ### Installation
 
-1. Clonar el repositorio
+1. Clonar el repositorio, escribir en el terminal:
 ```sh
-https://github.com/afmonroy83/task_app.git
+git clone https://github.com/afmonroy83/task_app.git
 ```
-2. Instalar gemas y levantar la base de datos
+2. Instalar gemas y levantar la base de datos en la consola escribir:
 ```
+cd task_app
 bundle install
 rails db:setup
 ```
-3. Ajustar variables en config/database.yml
+3. Ajustar variables, abrir el archivo  config/database.yml y editar los siguientes campos:
 ```
 default: &default
   adapter: mysql2
@@ -85,7 +86,7 @@ default: &default
   port: 3306
   encoding: utf8
 ```
-4. Ejecutar la aplicación con rails 
+4. Ejecutar la aplicación con rails en la consola 
 ```
    Rails:
    (cualquier rama)
