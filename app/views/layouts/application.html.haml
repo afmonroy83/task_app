@@ -24,9 +24,9 @@
                   %li
                     %a.dropdown-item{:href => "#{tasks_path}"} Todas
 
-            %form.d-flex
+            .d-flex
               %input.form-control.form-control-sm{"autocomplete"=>"off",:name  => "search","aria-label" => "Search", :placeholder => "#{t('application.search')}", :type => "search",:id => "search2", "data-toggle" => "dropdown"}/
-              %button.btn.btn-outline-info{:type => "submit"}=t('application.search')
+              %button.btn.btn-outline-info#buscar{:type => "button"}=t('application.search')
           #navbarScroll.collapse.navbar-collapse.flex-grow-1.text-right
             %ul.navbar-nav.ms-auto.flex-nowrap{:style => "--bs-scroll-height: 100px;"}
               %li.nav-item.dropdown
@@ -47,7 +47,7 @@
                       = link_to t('application.Login'), new_user_session_path, class: "dropdown-item"
                   -if user_signed_in?
                     %li.dropdown-divider{:role => "separator"}
-                    %li= link_to t('application.Login'), destroy_user_session_path, method: :delete, class: "dropdown-item"
+                    %li= link_to t('application.Logout'), destroy_user_session_path, method: :delete, class: "dropdown-item"
               %li.nav-item.dropdown
                 %a#navbarScrollingDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
                   =t('application.language')
@@ -64,11 +64,12 @@
         = yield
 -if user_signed_in?
   :javascript
-
-    //setup before functions
+    $( "#buscar" ).on( "click", function() {
+      doneTyping();
+    });
 
     var typingTimer;                //timer identifier
-    var doneTypingInterval = 2000;  //time in ms, 5 second for example
+    var doneTypingInterval = 1000;  //time in ms, 5 second for example
     var $input = $('#search2');
 
     //on keyup, start the countdown
@@ -96,11 +97,13 @@
             $('#main-container h3').remove();
             $('#main-container down').remove();
             $('#main-container .row').remove();
+            $("#down ul").remove();
             $("#main-container").prepend("<h3>Resulados para: "+ $input.val() +"</h3>");
+            $("#main-container #down").prepend("<ul></ul>");
             var tasks = data
               $.each(tasks, function (i, valor) {
 
-                  $("#main-container #down").prepend("<a class='btn btn-info' href='/tasks/"+ valor.id +"'>"+valor.description+"</a>");
+                  $("#down ul").prepend("<li>'"+valor.description +"' creada el: "+valor.created_at +" <a  href='/tasks/"+ valor.id +"'> ver </a></li>");
 
               });
             },

@@ -9,9 +9,11 @@ es:
     Login: Iniciar sesión
     sign_up: Registrarse
     language: Idioma
+    authorization: No estas autorizado para entrar a esta pagina
 
   welcome:
     welcome: "¡Bienvenido!"
+    info: Inicia sesión para crear, editar y administrar tus tareas
 
   task:
     task: la tarea

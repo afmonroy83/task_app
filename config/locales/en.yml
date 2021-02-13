@@ -8,10 +8,10 @@ en:
     Logout: "Logout"
     Login: Login
     sign_up: Sign up
-
+    authorization: You are not authorized to access this page.
   welcome:
     welcome: "welcome!"
-
+    info: Login to create, edit and manage your tasks
   task:
     task: task
     title: Task list

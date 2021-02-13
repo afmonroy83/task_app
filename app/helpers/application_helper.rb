@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def boolean_check(value)
     content_tag :span, class: "label #{'label-success' if value}" do
-      tag :i, class: "fa fa-#{value == "complete" ? 'check' : 'minus'}"
+      tag :i, class: "fa fa-#{value == "complete" ? 'check' : 'times'}"
     end
   end
 
