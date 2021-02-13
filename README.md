@@ -100,6 +100,12 @@ Después de subir el servicio, en su navegador dirigirse a:
 
 #### Local
 >- http://localhost:3000/
+>- Credenciales admin: 
+  >>- email: admin@gmail.com
+  >>- Contraseña: password1234
+>- Credenciales usuario normal: 
+  >>- email: client@gmail.com
+  >>- Contraseña: password1234
 #### (Servidor)
 >- 
 
