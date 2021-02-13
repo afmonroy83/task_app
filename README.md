@@ -7,7 +7,7 @@
     <a href=""><strong>Ir a Documentación»</strong></a>
     <br />
     <br />
-    <a href="https://kiosko.azurewebsites.net/">Ver Demo</a>
+    <a href="">Ver Demo</a>
     ·
     <a href="https://github.com/afmonroy83/task_app/issues">Reportar Errores</a>
     ·
