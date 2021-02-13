@@ -1,0 +1,35 @@
+es:
+  application:
+    tasks: "Tareas"
+    app_name: "App de tareas"
+    search: "Buscar"
+    user: "Usuario"
+    edit_profile: "Editar perfil"
+    Logout: "Salir"
+    Login: Iniciar sesión
+    sign_up: Registrarse
+    language: Idioma
+
+  welcome:
+    welcome: "¡Bienvenido!"
+
+  task:
+    task: la tarea
+    title: Lista de Tareas
+    date: Fecha
+    author: Autor
+    status: Estado
+    description: Descripción
+    options: Opciones
+
+  scaffold:
+    all: Todas
+    back: Atras
+    new: Nueva
+    show: Mostrar
+    destroy: Eliminar
+    edit: Editar
+    destroy_confirmation: ¿Estas seguro/a?
+    successfully_created: fue creada con exito.
+    successfully_updated: fue actualizada con exito.
+    successfully_destroyed: fue eliminada con exito.

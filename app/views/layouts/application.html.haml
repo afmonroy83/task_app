@@ -9,14 +9,14 @@
     .row
       %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         .container-fluid
-          %a.navbar-brand{:href => "#{home_path}"} Navbar scroll
+          %a.navbar-brand{:href => "#{home_path}"}=t('application.app_name')
           %button.navbar-toggler{"aria-controls" => "navbarScroll", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarScroll", "data-bs-toggle" => "collapse", :type => "button"}
             %span.navbar-toggler-icon
           #navbarScroll.collapse.navbar-collapse
             %ul.navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll{:style => "--bs-scroll-height: 100px;"}
               %li.nav-item.dropdown
                 %a#navbarScrollingDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-                  Tareas
+                  =t('application.tasks')
                 %ul.dropdown-menu{"aria-labelledby" => "navbarScrollingDropdown"}
                   %li
                     %a.dropdown-item{:href => "#{new_task_path}"} Nueva
@@ -25,8 +25,8 @@
                     %a.dropdown-item{:href => "#{tasks_path}"} Todas
 
             %form.d-flex
-              %input.form-control.form-control-sm{"autocomplete"=>"off",:name  => "search","aria-label" => "Search", :placeholder => "Buscar", :type => "search",:id => "search2", "data-toggle" => "dropdown"}/
-              %button.btn.btn-outline-info{:type => "submit"} Buscar
+              %input.form-control.form-control-sm{"autocomplete"=>"off",:name  => "search","aria-label" => "Search", :placeholder => "#{t('application.search')}", :type => "search",:id => "search2", "data-toggle" => "dropdown"}/
+              %button.btn.btn-outline-info{:type => "submit"}=t('application.search')
           #navbarScroll.collapse.navbar-collapse.flex-grow-1.text-right
             %ul.navbar-nav.ms-auto.flex-nowrap{:style => "--bs-scroll-height: 100px;"}
               %li.nav-item.dropdown
@@ -34,20 +34,29 @@
                   - if user_signed_in?
                     =current_user.username
                   - else
-                    Usuario
+                    =t('application.user')
 
                 %ul.dropdown-menu{"aria-labelledby" => "navbarScrollingDropdown"}
                   -if user_signed_in?
                     %li
-                      = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
+                      = link_to t('application.edit_profile'), edit_user_registration_path, class: "dropdown-item"
                   -else
                     %li
-                      = link_to "Sign up", new_user_registration_path, class: "dropdown-item"
+                      = link_to t('application.sign_up'), new_user_registration_path, class: "dropdown-item"
                     %li
-                      = link_to "Login", new_user_session_path, class: "dropdown-item"
+                      = link_to t('application.Login'), new_user_session_path, class: "dropdown-item"
                   -if user_signed_in?
                     %li.dropdown-divider{:role => "separator"}
-                    %li= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"
+                    %li= link_to t('application.Login'), destroy_user_session_path, method: :delete, class: "dropdown-item"
+              %li.nav-item.dropdown
+                %a#navbarScrollingDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                  =t('application.language')
+                %ul.dropdown-menu{"aria-labelledby" => "navbarScrollingDropdown"}
+                  - if I18n.locale == I18n.default_locale
+                    = link_to "English", { :locale=>'en' }, class: "dropdown-item"
+                  - else
+                    = link_to "Español", { :locale=>'es' }, class: "dropdown-item"
+
     #main-container.container
       = flash_messages
       #down

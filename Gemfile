@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'will_paginate', '~> 3.1.7'
 gem 'will_paginate-bootstrap'
+gem "font-awesome-rails"
 # Add JQuery for Js
 gem 'jquery-rails'
 # Add haml for html
@@ -33,7 +34,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-
+gem 'rails-i18n'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

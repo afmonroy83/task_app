@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :tasks do
-    collection do
-      post 'search'
+  scope "(:locale)", :locale => /en|es/ do
+    devise_for :users
+    resources :tasks do
+      collection do
+        post 'search'
+      end
     end
-  end
-  root 'welcome#index', to: 'welcome#index', as: "home"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    root 'welcome#index', to: 'welcome#index', as: "home"
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
 end

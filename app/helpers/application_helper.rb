@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def boostrap_class(alert)
     { success: 'alert-success', error: 'alert-danger', notice: 'alert-success', warning: 'alert-warning',
       danger: 'alert-danger', alert: 'alert-danger' }[alert.to_sym]
@@ -12,4 +13,11 @@ module ApplicationHelper
     end
     nil
   end
+
+  def boolean_check(value)
+    content_tag :span, class: "label #{'label-success' if value}" do
+      tag :i, class: "fa fa-#{value == "complete" ? 'check' : 'minus'}"
+    end
+  end
+
 end

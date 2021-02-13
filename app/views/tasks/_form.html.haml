@@ -5,12 +5,13 @@
       %ul
         - @task.errors.full_messages.each do |message|
           %li= message
-
-  .field
-    = f.label :status
-    = f.select :status, [['Completo', 'complete'], ['Incompleto', 'incomplete']], {:name => "department", :include_blank => 'Estado(*)' }, :required => true
   .field
     = f.label :description
     = f.text_field :description
+
+  .field
+    = f.label "Completada"
+    = f.check_box :status, {:class => "myclass", :style => "mystyle"}, "complete", "incomplete"
+
   .actions
     = f.submit 'Save'
