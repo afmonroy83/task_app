@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   # GET /tasks
   def index
-    @tasks =  Task.get_tasks(current_user).order('created_at ASC').paginate(:per_page => 10, :page => params[:page])
+    @tasks =  Task.get_tasks(current_user).order('created_at ASC').paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /tasks/1
