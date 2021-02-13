@@ -74,7 +74,7 @@ git clone https://github.com/afmonroy83/task_app.git
 ```
 cd task_app
 bundle install
-rails db:setup
+rails db:setup #IMPORTANTE realizar paso 3 antes de ejecutar este comando
 ```
 3. Ajustar variables, abrir el archivo  config/database.yml y editar los siguientes campos:
 ```
